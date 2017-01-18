@@ -1,0 +1,87 @@
+AllCops:
+  Exclude:
+    - test_performance.gemspec
+    - test/*.rb
+    - spec/**/*
+
+# Removing need for frozen string literal comment.
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# Removing the preference for string single quotes.
+Style/StringLiterals:
+  Enabled: false
+
+# Missing top-level module documentation comment.
+Style/Documentation:
+  Enabled: false
+
+# Prefer reduce over inject.
+Style/CollectionMethods:
+  PreferredMethods:
+    reduce: 'inject'
+
+# Use each_with_object instead of inject.
+Style/EachWithObject:
+  Enabled: false
+
+# Prefer fail over raise.
+Style/SignalException:
+  Enabled: false
+
+# This never works for validations.
+Style/AlignHash:
+  EnforcedLastArgumentHashStyle: ignore_implicit
+
+# Align multi-line params with previous line.
+Style/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+
+# Indent `when` clause one step from `case`.
+Style/CaseIndentation:
+  IndentOneStep: true
+
+# Don't force bad var names for reduce/inject loops.
+Style/SingleLineBlockParams:
+  Enabled: false
+
+# For method chains, keep the dot with the method name.
+Style/DotPosition:
+  EnforcedStyle: leading
+
+# Stop nesting so hard.
+Metrics/BlockNesting:
+  Max: 2
+
+# Encourage short methods.
+Metrics/MethodLength:
+  Max: 11
+
+# Encourage fewer parameters.
+Metrics/ParameterLists:
+  Max: 4
+
+# Allow longer lines for this application. Some of the code simply
+# reads better without worrying about line length.
+Metrics/LineLength:
+  Max: 115
+
+# The following three are being disabled for this application because the
+# warnings are only triggering for the timestamp methods. I see no way (or
+# need) to break them up and still keep them easily understandable at a
+# glance.
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+# Increasing this only for this application. The culprit here is the
+# PerformanceData class. However, breaking this functionality out into
+# other classes makes little sense to me. Further, most of the reason
+# for the overall length was due to satisfying other RuboCop warnings.
+Metrics/ClassLength:
+  Max: 120
